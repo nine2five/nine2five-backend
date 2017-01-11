@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/nine2five/nine2five#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "coveralls": "^2.11.15",
     "eslint": "^3.13.1",
     "istanbul": "^0.4.5",
