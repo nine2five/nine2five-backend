@@ -1,0 +1,19 @@
+{
+  "name": "nine2five",
+  "version": "1.0.0",
+  "description": "Resume version management and career success application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nine2five/nine2five"
+  },
+  "author": "broxsonl@gmail.com, ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/broxsonl/nine2five/issues"
+  },
+  "homepage": "https://github.com/broxsonl/nine2five#readme"
+}
