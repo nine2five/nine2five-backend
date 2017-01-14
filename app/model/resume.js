@@ -3,7 +3,6 @@
 import pg from 'pg';
 
 function query(client) {
-
   return client.query(
     `CREATE TABLE IF NOT EXISTS
     resumes(
@@ -15,7 +14,7 @@ function query(client) {
       title VARCHAR(50) NOT NULL,
       fileType VARCHAR(40),
       fileSrc VARCHAR(40) NOT NULL,
-      uploadDate DATE NOT NULL,
+      uploadDate DATE NOT NULL
     )`
   );
 }

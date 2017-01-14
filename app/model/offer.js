@@ -3,7 +3,6 @@
 import pg from 'pg';
 
 function query(client) {
-
   return client.query(
     `CREATE TABLE IF NOT EXISTS
     offers(
@@ -11,7 +10,7 @@ function query(client) {
       date DATE,
       salary INTEGER,
       benefits TEXT,
-      accepted BOOLEAN,
+      accepted BOOLEAN
     )`
   );
 }
