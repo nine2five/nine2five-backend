@@ -1,17 +1,18 @@
 'use strict';
 
-import pg from 'pg';
+const pg = require('pg');
 
-function query(client) {
+module.exports = function query(client) {
 
-  client.query(
+  return client.query(
     `CREATE TABLE IF NOT EXISTS
-    items(
+    users(
       id SERIAL PRIMARY KEY,
-      text VARCHAR(40) not null,
-      complete BOOLEAN
+      password VARCHAR(40) NOT NULL,
+      email VARCHAR(256),
+      is_verified BOOLEAN DEFAULT false
     )`
   );
-}
+};
 
-export default query;
+// export default query;
