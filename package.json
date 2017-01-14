@@ -30,7 +30,11 @@
     "coveralls": "^2.11.15",
     "eslint": "^3.13.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg": "^6.1.2",
     "webpack": "^1.14.0"
   }
 }

@@ -3,6 +3,7 @@ db
 data/*
 coverage
 html-report
+build
 
 # Logs
 logs
