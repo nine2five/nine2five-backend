@@ -8,7 +8,7 @@ function query(client) {
     `CREATE TABLE IF NOT EXISTS
     users(
       id SERIAL PRIMARY KEY,
-      password VARCHAR(40) NOT NULL,
+      password VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL,
       is_verified BOOLEAN DEFAULT false
     )`
