@@ -1,8 +1,8 @@
 'use strict';
 
-const pg = require('pg')
+import pg from 'pg';
 
-const User = require('../user')
+import User from '../user';
 
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/nine2five';
 

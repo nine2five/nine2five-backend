@@ -1,8 +1,8 @@
 'use strict';
 
-const pg = require('pg');
+import pg from 'pg';
 
-module.exports = function query(client) {
+function query(client) {
 
   return client.query(
     `CREATE TABLE IF NOT EXISTS
@@ -13,6 +13,6 @@ module.exports = function query(client) {
       is_verified BOOLEAN DEFAULT false
     )`
   );
-};
+}
 
-// export default query;
+export default query;
