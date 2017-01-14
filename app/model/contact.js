@@ -3,7 +3,6 @@
 import pg from 'pg';
 
 function query(client) {
-
   return client.query(
     `CREATE TABLE IF NOT EXISTS
     contacts(
