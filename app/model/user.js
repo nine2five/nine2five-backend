@@ -9,7 +9,7 @@ function query(client) {
     users(
       id SERIAL PRIMARY KEY,
       password VARCHAR(40) NOT NULL,
-      email VARCHAR(256),
+      email VARCHAR(255) NOT NULL,
       is_verified BOOLEAN DEFAULT false
     )`
   );

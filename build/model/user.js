@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function query(client) {
 
-  return client.query('CREATE TABLE IF NOT EXISTS\n    users(\n      id SERIAL PRIMARY KEY,\n      password VARCHAR(40) NOT NULL,\n      email VARCHAR(256),\n      is_verified BOOLEAN DEFAULT false\n    )');
+  return client.query('CREATE TABLE IF NOT EXISTS\n    users(\n      id SERIAL PRIMARY KEY,\n      password VARCHAR(40) NOT NULL,\n      email VARCHAR(255) NOT NULL,\n      is_verified BOOLEAN DEFAULT false\n    )');
 }
 
 exports.default = query;
