@@ -6,11 +6,12 @@ function query(client) {
 
   return client.query(
     `CREATE TABLE IF NOT EXISTS
-    users(
+    contacts(
       id SERIAL PRIMARY KEY,
-      password VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL,
-      is_verified BOOLEAN DEFAULT false
+      name VARCHAR(255),
+      email VARCHAR(255),
+      phone VARCHAR(20),
+      title VARCHAR(255)
     )`
   );
 }
