@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+- 4.4.3
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+env:
+- CXX=g++-4.8
+sudo: required
+before_script: npm i
+after_success: npm run coveralls
+script:
+- npm test
+- npm run lint
+notifications:
+  email:
+    recipients:
+    - stefuhnee@gmail.com
+    - broxsonl@gmail.com
+    - maxfred0025@gmail.com
+    - Raziyeh.bazargan@gmail.com
+    on_failure: change
+    on_success: never
+  slack:
+    secure: Rm9uQdFnv3WUKhiVztmH67PCOXcXM/OxzpKBanW8yhqO7oX0bmafkFbDBbI11aQvY0+pIgmpI6bDHqNfvMXKHrSF30HPTb9hZFpJKzZMranW5dif/oJiE1AcP1x400z2kbq+iiYgPii5TtSfN5s88Jzd1Zd1K/0jF/OuSuG7wmLxRDQDSczSXVV0aFujQ746bwE/HzaY2LQctf+LpR0qNupCQM2ast0aHmOTkN9g5mm3peQyW+C734AB03TnM7JPZsaWu7c/soBNfrwCeAPOzcsr/N9wgLcJZ94BV1VSzmlZuNRVAJi/gHJyYEFIagNDd0/QtcwR5zlCLbHDCXabk1k9cttVQi0HX3S8lJuyXM/g+cvTXsAlo29b9pE6m1jAqUHmbIl9rOyPwUIFllMY+JS0RJsX5GMaX6HM4MmDoB3vlkqdYMJ9HvMCh8/5FX5Rf8BfT2RzkcrXV6gM8IUxYj+jIf1nItagsLfP0NWlvEz07MrIuzc+rvtYKCKZUfL49tvIQz2ruS/01H97vm3FRP5vowom5Ml2ikvC8jSJFt7fJ/SGLmvWRdGhUpUXIbYOulhvZL7jqoc2w6NdLgJ8Zuryb9R8ZlTaVKFZs0SjN/wIDn5Ln2v2cwvPUwlViN/FPBVhqSeFROQvTCiQIWCp7YbUD850Kb+pXWBcvMYKC5o=
+    on_failure: change
+    on_success: never
