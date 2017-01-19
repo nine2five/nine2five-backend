@@ -1,22 +1,33 @@
-'use strict';
+import Sequelize from 'sequelize';
+import User from './user';
+import Category from './category';
 
-import pg from 'pg';
-
-function query(client) {
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    resumes(
-      id SERIAL PRIMARY KEY,
-      user_id INTEGER,
-      category_id INTEGER,
-      FOREIGN KEY(user_id) REFERENCES users(id),
-      FOREIGN KEY(category_id) REFERENCES categories(id),
-      title VARCHAR(50) NOT NULL,
-      fileType VARCHAR(40),
-      fileSrc VARCHAR(40) NOT NULL,
-      uploadDate DATE NOT NULL
-    )`
-  );
+export function Resume(sequelize){
+  return sequelize.define('resume', {
+    userId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: User,
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+      },
+    },
+    categoryID: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: Category,
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+      },
+    },
+    title: {
+      type: Sequelize.STRING,
+    },
+    fileType: {
+      type: Sequelize.STRING,
+    },
+    fileSrc: {
+      type: Sequelize.STRING,
+    },
+  });
 }
-
-export default query;
