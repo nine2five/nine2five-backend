@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
 import User from './user';
 
-export function Profile(sequelize){
-  return sequelize.define('profile', {
+export default function(sequelize){
+  let Profile = sequelize.define('profile', {
     username: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -22,4 +22,7 @@ export function Profile(sequelize){
       },
     },
   });
+
+  Profile.belongsTo(User);
+  return Profile;
 }

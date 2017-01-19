@@ -2,8 +2,8 @@ import Sequelize from 'sequelize';
 import User from './user';
 import Category from './category';
 
-export function Resume(sequelize){
-  return sequelize.define('resume', {
+export default function(sequelize){
+  let Resume = sequelize.define('resume', {
     userId: {
       type: Sequelize.INTEGER,
       references: {
@@ -30,4 +30,9 @@ export function Resume(sequelize){
       type: Sequelize.STRING,
     },
   });
+  
+  Resume.belongsTo(User);
+  Category.belongsTo(Resume);
+
+  return Resume;
 }

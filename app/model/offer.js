@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-export function Offer(sequelize){
+export default function Offer(sequelize){
   return sequelize.define('offer', {
     date: {
       type: Sequelize.DATE,

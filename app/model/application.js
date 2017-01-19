@@ -2,11 +2,11 @@ import Sequelize from 'sequelize';
 import User from './user';
 import Status from './status';
 import Contact from './contact';
-import Offer from './contact';
+import Offer from './offer';
 
 
-export function Application(sequelize){
-  return sequelize.define('application', {
+export default function(sequelize){
+  let Application = sequelize.define('application', {
     userId: {
       type: Sequelize.INTEGER,
       references: {
@@ -61,6 +61,11 @@ export function Application(sequelize){
       type: Sequelize.TEXT,
     },
   });
-}
 
-Application.belongsTo(User);
+  Application.belongsTo(User);
+  Offer.belongsTo(Application);
+  Contact.belongsTo(Application);
+  Status.belongsTo(Application);
+
+  return Application;
+}
