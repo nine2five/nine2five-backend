@@ -1,15 +1,9 @@
-'use strict';
+import Sequelize from 'sequelize';
 
-import pg from 'pg';
-
-function query(client) {
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    statuses(
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(40)
-    )`
-  );
+export function Status(sequelize){
+  return sequelize.define('status', {
+    name: {
+      type: Sequelize.STRING,
+    },
+  });
 }
-
-export default query;

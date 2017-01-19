@@ -15,7 +15,6 @@ let Contact = require('./build/model/contact').Contact(sequelize);
 let Offer = require('./build/model/offer').Offer(sequelize);
 let Application = require('./build/model/application').Application(sequelize);
 
-
 sequelize
   .authenticate()
   .then(() => {
