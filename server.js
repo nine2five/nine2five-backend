@@ -15,20 +15,19 @@ let Contact = require('./build/model/contact').Contact(sequelize);
 let Offer = require('./build/model/offer').Offer(sequelize);
 let Application = require('./build/model/application').Application(sequelize);
 
-
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been started');
+    console.log('Database connection has been started');
   })
-  .then( () => User.sync())
-  .then( () => Profile.sync())
-  .then( () => Category.sync())
-  .then( () => Status.sync())
-  .then( () => Resume.sync())
-  .then( () => Contact.sync())
-  .then( () => Offer.sync())
-  .then( () => Application.sync())
+  .then(User.sync)
+  .then(Profile.sync)
+  .then(Category.sync)
+  .then(Status.sync)
+  .then(Resume.sync)
+  .then(Contact.sync)
+  .then(Offer.sync)
+  .then(Application.sync)
   .catch(err => {
     console.log('Unable to connect', err);
   });

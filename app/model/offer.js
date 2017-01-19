@@ -1,18 +1,18 @@
-'use strict';
+import Sequelize from 'sequelize';
 
-import pg from 'pg';
-
-function query(client) {
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    offers(
-      id SERIAL PRIMARY KEY,
-      date DATE,
-      salary INTEGER,
-      benefits TEXT,
-      accepted BOOLEAN
-    )`
-  );
+export function Offer(sequelize){
+  return sequelize.define('offer', {
+    date: {
+      type: Sequelize.DATE,
+    },
+    salary: {
+      type: Sequelize.INTEGER,
+    },
+    benefits: {
+      type: Sequelize.TEXT,
+    },
+    accepted: {
+      type: Sequelize.BOOLEAN,
+    },
+  });
 }
-
-export default query;
