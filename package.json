@@ -4,6 +4,7 @@
   "description": "Resume version management and career success application",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "istanbul cover --dir ./coverage _mocha --bail --recursive './test/**/*-test.js' --opts",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
