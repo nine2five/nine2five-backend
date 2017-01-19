@@ -1,18 +1,18 @@
-'use strict';
+import Sequelize from 'sequelize';
 
-import pg from 'pg';
-
-function query(client) {
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    contacts(
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(255),
-      email VARCHAR(255),
-      phone VARCHAR(20),
-      title VARCHAR(255)
-    )`
-  );
+export function Contact(sequelize){
+  return sequelize.define('contact', {
+    name: {
+      type: Sequelize.STRING,
+    },
+    email: {
+      type: Sequelize.STRING,
+    },
+    phone: {
+      type: Sequelize.STRING,
+    },
+    title: {
+      type: Sequelize.STRING,
+    },
+  });
 }
-
-export default query;
