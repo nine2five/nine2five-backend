@@ -1,19 +1,25 @@
-'use strict';
+import Sequelize from 'sequelize';
+import User from './user';
 
-import pg from 'pg';
-
-function query(client) {
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    profiles(
-      id SERIAL PRIMARY KEY,
-      username VARCHAR(255) NOT NULL,
-      first_name VARCHAR(255),
-      last_name VARCHAR(255),
-      user_id INTEGER,
-      FOREIGN KEY(user_id) REFERENCES users(id)
-    )`
-  );
+export function Profile(sequelize){
+  return sequelize.define('profile', {
+    username: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    firstName: {
+      type: Sequelize.STRING,
+    },
+    lastName: {
+      type: Sequelize.STRING,
+    },
+    userId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: User,
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+      },
+    },
+  });
 }
-
-export default query;
