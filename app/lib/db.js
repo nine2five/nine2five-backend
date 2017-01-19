@@ -33,8 +33,8 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Database connection has been started');
+    UserModel.sync({});
   })
-  .then(() => UserModel.sync({}))
   .then(() => ProfileModel.sync({}))
   .then(() => CategoryModel.sync({}))
   .then(() => StatusModel.sync({}))
@@ -45,5 +45,3 @@ sequelize
   .catch(err => {
     console.log('Unable to connect', err);
   });
-
-export default sequelize;
