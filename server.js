@@ -1,5 +1,6 @@
 'use strict';
 
+const express = require('express');
 require('./build/lib/db');
 
-const express = require('express');
+const app = express();
