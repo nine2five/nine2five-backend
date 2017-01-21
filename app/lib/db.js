@@ -33,7 +33,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Database connection has been started');
-    User.sync({});
+    return User.sync({});
   })
   .then(() => Profile.sync({}))
   .then(() => Category.sync({}))
