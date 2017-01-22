@@ -8,12 +8,22 @@ const port = '5432';
 
 const conStringPri = `postgres://${host}:${port}/postgres`;
 
-module.exports = function() {
-  return pg.connect(conStringPri)
-  .then(client => {
-    // client.on('drain', client.end.bind(client));
-    client.query('CREATE DATABASE ' + dbName);
-    return client;
-  })
+exports.createDB = function(cb) {
+  let client = new pg.Client(conStringPri);
+  client.connect();
+
+  return client.query('CREATE DATABASE ' + dbName)
+  .then(() => client.end())
+  .then(cb)
+  .catch(console.error);
+};
+
+exports.destroyDB = function(cb) {
+  let client = new pg.Client(conStringPri);
+  client.connect();
+
+  client.query('DROP DATABASE ' + dbName)
+  .then(() => client.end())
+  .then(cb)
   .catch(console.error);
 };

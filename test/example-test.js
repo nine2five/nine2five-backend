@@ -4,42 +4,23 @@ const Sequelize = require('sequelize');
 const expect = require('chai').expect;
 const pg = require('pg');
 
-
-// const client = require('./lib/database-setup')();
+const dbEnv = require('./lib/database-setup');
 
 const dbName = 'nine2fivetest';
 const host = 'localhost';
 const port = '5432';
 
 const conStringPost = `postgres://${host}:${port}/${dbName}`;
-const conStringPri = `postgres://${host}:${port}/postgres`;
-
-let sequelize;
-
 
 describe('Sample test for creating DBs', function() {
 
   before('create the db', (done) => {
-    let client = new pg.Client(conStringPri);
-    client.connect();
-
-    client.query('CREATE DATABASE ' + dbName)
-    .then(() => {
-      sequelize = new Sequelize(conStringPost);
-      client.end();
-    })
-    .then(done)
-    .catch(console.error);
+    dbEnv.createDB(done)
+    .then(() => this.sequelize = new Sequelize(conStringPost));
   });
 
   after('destroy the db', (done) => {
-    let client = new pg.Client(conStringPri);
-    client.connect();
-    
-    client.query('DROP DATABASE ' + dbName)
-    .then(() => client.end())
-    .then(done)
-    .catch(console.error);
+    dbEnv.destroyDB(done);
   });
 
   describe('sample test to get travis passing', () => {
