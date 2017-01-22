@@ -8,13 +8,12 @@ const port = '5432';
 
 const conStringPri = `postgres://${host}:${port}/postgres`;
 
-exports.createDB = function(cb) {
+exports.createDB = function() {
   let client = new pg.Client(conStringPri);
   client.connect();
 
   return client.query('CREATE DATABASE ' + dbName)
   .then(() => client.end())
-  .then(cb)
   .catch(console.error);
 };
 
