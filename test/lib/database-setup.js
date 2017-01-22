@@ -17,12 +17,11 @@ exports.createDB = function() {
   .catch(console.error);
 };
 
-exports.destroyDB = function(cb) {
+exports.destroyDB = function() {
   let client = new pg.Client(conStringPri);
   client.connect();
 
-  client.query('DROP DATABASE ' + dbName)
+  return client.query('DROP DATABASE ' + dbName)
   .then(() => client.end())
-  .then(cb)
   .catch(console.error);
 };
