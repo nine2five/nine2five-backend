@@ -12,6 +12,7 @@ import ApplicationModel from '../model/application';
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/nine2five';
 const sequelize = new Sequelize(DATABASE_URL);
 
+
 let User = sequelize.define('user', UserModel);
 let Profile = sequelize.define('profile', ProfileModel);
 let Category = sequelize.define('category', CategoryModel);
@@ -29,7 +30,8 @@ Application.belongsTo(Status);
 Resume.belongsTo(Category);
 Profile.belongsTo(User);
 
-sequelize
+module.exports = function(cb) {
+  sequelize
   .authenticate()
   .then(() => {
     console.log('Database connection has been started');
@@ -42,6 +44,8 @@ sequelize
   .then(() => Contact.sync({}))
   .then(() => Offer.sync({}))
   .then(() => Application.sync({}))
+  .then(cb)
   .catch(err => {
     console.log('Unable to connect', err);
   });
+};
