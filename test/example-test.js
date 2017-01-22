@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.load({path: `${__dirname}/.testenv`});
 
 const dbPopulate = require('../build/lib/db');
-const dbEnv = require('./lib/database-setup');
+const dbSetup = require('./lib/database-setup');
 const serverCtrl = require('./lib/server-ctrl');
 const server = require('../server');
 
@@ -20,7 +20,7 @@ const conStringPost = `postgres://${host}:${port}/${dbName}`;
 describe('Sample test for creating DBs', function() {
 
   before('create the db', (done) => {
-    dbEnv.createDB()
+    dbSetup.createDB()
     .then(() => {
       console.log('db created');
       this.sequelize = new Sequelize(conStringPost);
@@ -29,11 +29,7 @@ describe('Sample test for creating DBs', function() {
   });
 
   after('destroy the db', (done) => {
-    dbEnv.destroyDB()
-    .then(() => {
-      console.log('destroyed');
-      done();
-    });
+    dbSetup.destroyDB(done)
     // serverCtrl.serverDown(server, done);
   });
 

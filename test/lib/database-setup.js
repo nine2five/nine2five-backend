@@ -3,25 +3,27 @@
 const pg = require('pg');
 
 const dbName = 'nine2fivetest';
-const host = 'localhost';
-const port = '5432';
 
-const conStringPri = `postgres://${host}:${port}/postgres`;
+var Pool = pg.Pool;
+var pool = new Pool({
+  host: 'localhost',
+  database: 'postgres',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 5000,
+});
 
 exports.createDB = function() {
-  let client = new pg.Client(conStringPri);
-  client.connect();
-
-  return client.query('CREATE DATABASE ' + dbName)
-  .then(() => client.end())
+  return pool.connect()
+  .then(client => client.query('CREATE DATABASE ' + dbName))
+  .then(client => client.release())
   .catch(console.error);
 };
 
-exports.destroyDB = function() {
-  let client = new pg.Client(conStringPri);
-  client.connect();
-
-  return client.query('DROP DATABASE ' + dbName)
-  .then(() => client.end())
+exports.destroyDB = function(done) {
+  return pool.connect()
+  .then(client => client.query('DROP DATABASE ' + dbName))
+  .then(client => client.release())
+  .then(done)
   .catch(console.error);
 };
