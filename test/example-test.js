@@ -20,22 +20,26 @@ const conStringPost = `postgres://${host}:${port}/${dbName}`;
 describe('Sample test for creating DBs', function() {
 
   before('create the db', (done) => {
-    dbSetup.createDB()
-    .then(() => {
-      console.log('db created');
-      this.sequelize = new Sequelize(conStringPost);
-      return dbPopulate(done);
-    });
+    dbSetup('create')
+    .then(() => this.sequelize = new Sequelize(conStringPost))
+    .then(dbPopulate)
+    .then(() => done())
+    .catch(done);
   });
 
   after('destroy the db', (done) => {
-    dbSetup.destroyDB(done)
+    dbSetup('drop', done)
+    .catch(done);
     // serverCtrl.serverDown(server, done);
   });
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
       expect(true).to.equal(true);
+    });
+
+    it('should pass', () => {
+      expect(false).to.equal(false);
     });
   });
 });

@@ -30,7 +30,7 @@ Application.belongsTo(Status);
 Resume.belongsTo(Category);
 Profile.belongsTo(User);
 
-module.exports = function(done) {
+module.exports = function() {
   return sequelize
   .authenticate()
   .then(() => {
@@ -44,9 +44,6 @@ module.exports = function(done) {
   .then(() => Contact.sync({}))
   .then(() => Offer.sync({}))
   .then(() => Application.sync({}))
-  .then(() => {
-    if (done) done();
-  })
   .catch(err => {
     console.log('Unable to connect', err);
   });

@@ -4,8 +4,8 @@ const pg = require('pg');
 
 const dbName = 'nine2fivetest';
 
-var Pool = pg.Pool;
-var pool = new Pool({
+const Pool = pg.Pool;
+const pool = new Pool({
   host: 'localhost',
   database: 'postgres',
   port: 5432,
@@ -13,17 +13,29 @@ var pool = new Pool({
   idleTimeoutMillis: 5000,
 });
 
-exports.createDB = function() {
-  return pool.connect()
-  .then(client => client.query('CREATE DATABASE ' + dbName))
-  .then(client => client.release())
-  .catch(console.error);
+module.exports = function(action, done) {
+
+  return pool.query(`${action.toUpperCase()} DATABASE ${dbName}`)
+  .then(() => pool.end(done));
 };
 
-exports.destroyDB = function(done) {
-  return pool.connect()
-  .then(client => client.query('DROP DATABASE ' + dbName))
-  .then(client => client.release())
-  .then(done)
-  .catch(console.error);
-};
+
+// exports.createDB = function() {
+//   return pool.connect()
+//   .then(client => {
+//     this.client = client;
+//     return client.query(`CREATE DATABASE ${dbName}`);
+//   })
+//   .then(() => this.client.release())
+//   .catch(console.error);
+// };
+//
+// exports.destroyDB = function() {
+//   return pool.connect()
+//   .then(client => {
+//     this.client = client;
+//     return client.query(`DROP DATABASE ${dbName}`);
+//   })
+//   .then(() => this.client.release())
+//   .catch(console.error);
+// };
