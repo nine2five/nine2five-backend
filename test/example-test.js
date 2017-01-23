@@ -19,18 +19,17 @@ const conStringPost = `postgres://${host}:${port}/${dbName}`;
 
 describe('Sample test for creating DBs', function() {
 
-  before('create the db', (done) => {
-    dbSetup('create')
+  before('create the db', () => {
+    return dbSetup('create')
     .then(() => this.sequelize = new Sequelize(conStringPost))
     .then(dbPopulate)
-    .then(() => done())
-    .catch(done);
+    .catch(console.error);
   });
 
-  after('destroy the db', (done) => {
-    dbSetup('drop', done)
-    .catch(done);
-    // serverCtrl.serverDown(server, done);
+  after('destroy the db', () => {
+    return dbSetup('drop')
+    .then(() => console.log('done'))
+    .catch(console.error);
   });
 
   describe('sample test to get travis passing', () => {

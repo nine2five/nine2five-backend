@@ -4,8 +4,8 @@ const pg = require('pg');
 
 const dbName = 'nine2fivetest';
 
-const Pool = pg.Pool;
-const pool = new Pool({
+let Pool = pg.Pool;
+let pool = new Pool({
   host: 'localhost',
   database: 'postgres',
   port: 5432,
@@ -13,10 +13,8 @@ const pool = new Pool({
   idleTimeoutMillis: 5000,
 });
 
-module.exports = function(action, done) {
-
-  return pool.query(`${action.toUpperCase()} DATABASE ${dbName}`)
-  .then(() => pool.end(done));
+module.exports = function(action) {
+  return pool.query(`${action.toUpperCase()} DATABASE ${dbName}`);
 };
 
 
