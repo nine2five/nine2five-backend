@@ -14,7 +14,7 @@ let pool = new Pool({
 });
 
 module.exports = function(action) {
-  return pool.query(`${action.toUpperCase()} DATABASE ${dbName}`);
+  return pool.query(`${action} DATABASE ${dbName}`);
 };
 
 
