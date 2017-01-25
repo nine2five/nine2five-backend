@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
     accessToken = response.body.access_token;
     expiresIn = response.body.expires_in;
     refreshToken = response.body.refresh_token;
-    return request.get('https://www.linkedin.com/oauth/v2/authorization')
+    return request.get('https://api.linkedin.com/v1/people/~')
     .set('Authorization', `Bearer ${response.body.access_token}`);
   })
   .then(response => {
