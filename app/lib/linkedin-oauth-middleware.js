@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
 
   let data = {
     grant_type: 'authorization_code',
-    code: req.query.code, // or code
+    code: req.query.code,
     client_id: process.env.Linkedin_CLIENT_ID,
     client_secret: process.env.Linkedin_CLIENT_SECRET,
     redirect_uri: `${process.env.API_URL}/api/oauth/linkedin`,
@@ -33,11 +33,11 @@ module.exports = function(req, res, next) {
   .then(response => {
     debug('linkedin-oauth-middleware response after access-token request', response.body);
     req.linkedinOAUTH = {
-      linkedinID: response.body.sub,
-      email: response.body.email,
-      accessToken,
-      expiresIn,
-      refreshToken,
+      linkedinID: response.body.id,
+      firstName: response.body.firstName,
+      lastName: response.body.lastName,
+      title: response.body.headline,
+      //profilePic: response.body.siteStandardProfileRequest.url,
     };
     next();
   })
