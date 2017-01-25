@@ -1,18 +1,15 @@
-'use strict';
+import Sequelize from 'sequelize';
 
-import pg from 'pg';
+const User = {
+  password: {
+    type: Sequelize.STRING,
+  },
+  email: {
+    type: Sequelize.STRING,
+  },
+  isVerified: {
+    type: Sequelize.BOOLEAN,
+  },
+};
 
-function query(client) {
-
-  return client.query(
-    `CREATE TABLE IF NOT EXISTS
-    users(
-      id SERIAL PRIMARY KEY,
-      password VARCHAR(40) NOT NULL,
-      email VARCHAR(256),
-      is_verified BOOLEAN DEFAULT false
-    )`
-  );
-}
-
-export default query;
+export default User;

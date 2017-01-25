@@ -1,17 +1,18 @@
 import Sequelize from 'sequelize';
 
-
-const Resume = {
+const Contact = {
+  name: {
+    type: Sequelize.STRING,
+  },
+  email: {
+    type: Sequelize.STRING,
+  },
+  phone: {
+    type: Sequelize.STRING,
+  },
   title: {
     type: Sequelize.STRING,
   },
-  fileType: {
-    type: Sequelize.STRING,
-  },
-  fileSrc: {
-    type: Sequelize.STRING,
-  },
-
 };
 
-export default Resume;
+export default Contact;

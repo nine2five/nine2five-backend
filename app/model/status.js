@@ -1,10 +1,9 @@
 import Sequelize from 'sequelize';
 
-const Category = {
+const Status = {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
 };
 
-export default Category;
+export default Status;

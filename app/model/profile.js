@@ -1,17 +1,16 @@
 import Sequelize from 'sequelize';
 
-
-const Resume = {
-  title: {
+const Profile = {
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  firstName: {
     type: Sequelize.STRING,
   },
-  fileType: {
+  lastName: {
     type: Sequelize.STRING,
   },
-  fileSrc: {
-    type: Sequelize.STRING,
-  },
-
 };
 
-export default Resume;
+export default Profile;
