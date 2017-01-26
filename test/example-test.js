@@ -14,23 +14,12 @@ const server = require('../server');
 const dbName = 'nine2fivetest';
 const host = 'localhost';
 const port = '5432';
-const conStringPost = `postgres://${host}:${port}/${dbName}`;
 
 
 describe('Sample test for creating DBs', function() {
 
-  before('create the db', () => {
-    return dbSetup('create')
-    .then(() => this.sequelize = new Sequelize(conStringPost))
-    .then(dbPopulate)
-    .catch(console.error);
-  });
-
-  after('destroy the db', () => {
-    return dbSetup('drop')
-    .then(() => console.log('done'))
-    .catch(console.error);
-  });
+  before('create the db', () => dbPopulate.call(this));
+  after('clear tables', () => this.sequelize.drop());
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
