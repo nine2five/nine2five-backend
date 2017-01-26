@@ -5,6 +5,7 @@ const expect = require('chai').expect;
 const dotenv = require('dotenv');
 dotenv.load({path: `${__dirname}/.testenv`});
 
+let dbConnection = require('../build/lib/db-connection');
 const serverCtrl = require('./lib/server-ctrl');
 const createTables = require('../build/lib/db-create-tables');
 const server = require('../server');
@@ -18,7 +19,7 @@ describe('Sample test for creating DBs', function() {
     .then(createTables);
   });
 
-  after('clear tables', () => this.sequelize.drop());
+  after('clear tables', () => dbConnection.sequelize.drop());
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
