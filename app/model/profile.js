@@ -1,16 +1,14 @@
-import Sequelize from 'sequelize';
-
-const Profile = {
-  username: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  firstName: {
-    type: Sequelize.STRING,
-  },
-  lastName: {
-    type: Sequelize.STRING,
-  },
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('profile', {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+    },
+  });
 };
-
-export default Profile;
