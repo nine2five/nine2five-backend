@@ -3,36 +3,30 @@
 const Sequelize = require('sequelize');
 const expect = require('chai').expect;
 const dotenv = require('dotenv');
-const pg = require('pg');
-
-const dbEnv = require('./lib/database-setup');
-
-const dbName = 'nine2fivetest';
-const host = 'localhost';
-const port = '5432';
-
-const conStringPost = `postgres://${host}:${port}/${dbName}`;
-
 dotenv.load({path: `${__dirname}/.testenv`});
+
+const serverCtrl = require('./lib/server-ctrl');
+const createTables = require('../build/lib/db-create-tables');
+const server = require('../server');
 
 describe('Sample test for creating DBs', function() {
 
-  before('create the db', (done) => {
-    dbEnv.createDB()
-    .then(() => {
-      this.sequelize = new Sequelize(conStringPost);
-      require('../server')(done);
-    });
+  before('create the db', () => {
+    return new Promise((resolve) => {
+      resolve(require('../build/lib/db-connection'));
+    })
+    .then(createTables);
   });
 
-  // after('destroy the db', (done) => {
-  //   dbEnv.destroyDB(done);
-  // });
+  after('clear tables', () => this.sequelize.drop());
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
-      console.log('test');
       expect(true).to.equal(true);
+    });
+
+    it('should pass', () => {
+      expect(false).to.equal(false);
     });
   });
 });
