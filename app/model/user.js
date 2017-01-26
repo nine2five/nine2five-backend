@@ -1,15 +1,13 @@
-import Sequelize from 'sequelize';
-
-const User = {
-  password: {
-    type: Sequelize.STRING,
-  },
-  email: {
-    type: Sequelize.STRING,
-  },
-  isVerified: {
-    type: Sequelize.BOOLEAN,
-  },
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('user', {
+    password: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+    },
+  });
 };
-
-export default User;
