@@ -14,8 +14,8 @@ module.exports = function(req, res, next) {
   let data = {
     grant_type: 'authorization_code',
     code: req.query.code,
-    client_id: process.env.Linkedin_CLIENT_ID,
-    client_secret: process.env.Linkedin_CLIENT_SECRET,
+    client_id: process.env.LINKEDIN_CLIENT_ID,
+    client_secret: process.env.LINKEDIN_CLIENT_SECRET,
     redirect_uri: `${process.env.API_URL}/api/oauth/linkedin`,
   };
 
@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
     accessToken = response.body.access_token;
     expiresIn = response.body.expires_in;
     refreshToken = response.body.refresh_token;
-    return request.get('https://api.linkedin.com/v1/people/~')
+    return request.get('https://api.linkedin.com/v1/people/~:(id,firstName,lastName,headline,picture-url)?format=json')
     .set('Authorization', `Bearer ${response.body.access_token}`);
   })
   .then(response => {
@@ -37,7 +37,7 @@ module.exports = function(req, res, next) {
       firstName: response.body.firstName,
       lastName: response.body.lastName,
       title: response.body.headline,
-      //profilePic: response.body.siteStandardProfileRequest.url,
+      profilePic: response.body.pictureUrl,
     };
     next();
   })
