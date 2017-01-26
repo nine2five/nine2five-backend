@@ -1,27 +1,25 @@
-import Sequelize from 'sequelize';
-
-const Application = {
-  company: {
-    type: Sequelize.STRING,
-  },
-  position: {
-    type: Sequelize.STRING,
-  },
-  dateApplied: {
-    type: Sequelize.DATE,
-  },
-  linkPosting: {
-    type: Sequelize.STRING,
-  },
-  lastCommunication: {
-    type: Sequelize.DATE,
-  },
-  interviewDate: {
-    type: Sequelize.DATE,
-  },
-  additionalInfo: {
-    type: Sequelize.TEXT,
-  },
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('application', {
+    company: {
+      type: DataTypes.STRING,
+    },
+    position: {
+      type: DataTypes.STRING,
+    },
+    dateApplied: {
+      type: DataTypes.DATE,
+    },
+    linkPosting: {
+      type: DataTypes.STRING,
+    },
+    lastCommunication: {
+      type: DataTypes.DATE,
+    },
+    interviewDate: {
+      type: DataTypes.DATE,
+    },
+    additionalInfo: {
+      type: DataTypes.TEXT,
+    },
+  });
 };
-
-export default Application;
