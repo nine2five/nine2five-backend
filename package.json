@@ -4,6 +4,7 @@
   "description": "Resume version management and career success application",
   "main": "index.js",
   "scripts": {
+    "create-database": "node ./test/lib/create-database.js",
     "start": "node server.js",
     "test": "istanbul cover --dir ./coverage _mocha --bail --recursive './test/**/*-test.js' --opts",
     "lint": "./node_modules/eslint/bin/eslint.js .",
