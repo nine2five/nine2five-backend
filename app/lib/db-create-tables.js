@@ -1,21 +1,22 @@
 'use strict';
 
-const sequelize = require('./db-connection');
+const dbConnect = require('./db-connection');
 
 module.exports = function() {
-  return sequelize.sequelize
+  console.log('table create');
+  return dbConnect.sequelize
   .authenticate()
   .then(() => {
     console.log('Database connection has been started');
-    return sequelize.user.sync({});
+    return dbConnect.user.sync({});
   })
-  // .then(() => sequelize.profile.sync({}))
-  // .then(() => sequelize.category.sync({}))
-  // .then(() => sequelize.status.sync({}))
-  // .then(() => sequelize.resume.sync({}))
-  // .then(() => sequelize.contact.sync({}))
-  // .then(() => sequelize.offer.sync({}))
-  // .then(() => sequelize.application.sync({}))
+  .then(() => dbConnect.profile.sync({}))
+  .then(() => dbConnect.category.sync({}))
+  .then(() => dbConnect.status.sync({}))
+  .then(() => dbConnect.resume.sync({}))
+  .then(() => dbConnect.contact.sync({}))
+  .then(() => dbConnect.offer.sync({}))
+  .then(() => dbConnect.application.sync({}))
   .catch(err => {
     console.log('Unable to connect', err);
     throw err;

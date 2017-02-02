@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  sequelize.define('resume', {
+  return sequelize.define('resume', {
     title: {
       type: DataTypes.STRING,
     },

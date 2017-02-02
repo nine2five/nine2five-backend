@@ -13,13 +13,10 @@ const server = require('../server');
 describe('Sample test for creating DBs', function() {
 
   before('create the db', () => {
-    return new Promise((resolve) => {
-      resolve(require('../build/lib/db-connection'));
-    })
-    .then(createTables);
+    createTables();
   });
 
-  after('clear tables', () => dbConnection.sequelize.drop());
+  // after('clear tables', () => dbConnection.sequelize.drop());
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
