@@ -6,7 +6,6 @@ const jsonParser = require('body-parser').json();
 const createError = require('http-errors');
 
 const User = require('../lib/db-connection').user;
-console.log(User, 'User');
 
 const authRouter = module.exports = Router();
 
