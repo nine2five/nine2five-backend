@@ -4,7 +4,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 
-const dbEnv = require('./build/lib/db');
+const sequelize = require('./app/lib/db-connection').sequelize;
+const authRouter = require('./app/route/auth-router');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,11 +14,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(morgan('dev'));
 
-const server = module.exports = function() {
-  app.listen(PORT, function() {
-    console.log(`Server up on ${PORT}`);
-    dbEnv();
-  });
-};
+app.use(authRouter);
+
+const server = module.exports = app.listen(PORT, function() {
+  if (require.main === module) sequelize.sync({});
+  console.log(`Server up on ${PORT}`);
+});
 
 server.isRunning = false;

@@ -1,10 +1,12 @@
+'use strict';
+
 const Sequelize = require('sequelize');
 
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/nine2five';
 
 const sequelize = new Sequelize(DATABASE_URL);
 
-module.exports = exports = {};
+const db = {};
 
 let models = [
   'application',
@@ -18,18 +20,18 @@ let models = [
 ];
 
 models.forEach(function(model) {
-  exports[model] = sequelize.import(`${__dirname}/../model/${model}`);
+  db[model] = sequelize.import(`${__dirname}/../model/${model}`);
 });
 
-(function(e) {
-  e.Application.belongsTo(e.User);
-  e.Application.belongsTo(e.Offer);
-  e.Application.belongsTo(e.Contact);
-  e.Resume.belongsTo(e.User);
-  e.Application.belongsTo(e.Status);
-  e.Resume.belongsTo(e.Category);
-  e.Profile.belongsTo(e.User);
-})(exports);
+db.application.belongsTo(db.user);
+db.application.belongsTo(db.offer);
+db.application.belongsTo(db.contact);
+db.resume.belongsTo(db.user);
+db.application.belongsTo(db.status);
+db.resume.belongsTo(db.category);
+db.profile.belongsTo(db.user);
 
-exports.sequelize = sequelize;
-exports.Sequelize = Sequelize;
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+module.exports = db;
