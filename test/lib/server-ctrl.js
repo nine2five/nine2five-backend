@@ -2,25 +2,26 @@
 
 module.exports = exports = {};
 
-exports.serverUp = function(server, done){
-  console.log('server up');
-  if (!server.isRunning){
-    console.log('server running');
-    server.listen(process.env.PORT, () => {
-      server.isRunning = true;
-    });
-  }
-  done();
+exports.serverUp = function(server){
+  return new Promise(resolve => {
+    if (!server.isRunning){
+      console.log('server running');
+      server.listen(process.env.PORT, () => {
+        server.isRunning = true;
+        resolve();
+      });
+    }
+  });
 };
 
 exports.serverDown = function(server, done){
-  if (server.isRunning){
-    server.close(err => {
-      if (err) return done(err);
-      server.isRunning = false;
-      done();
-    });
-    return;
-  }
-  done();
+  return new Promise((resolve, reject) => {
+    if (server.isRunning){
+      server.close(err => {
+        if (err) return reject(err);
+        server.isRunning = false;
+        resolve();
+      });
+    }
+  });
 };
