@@ -16,13 +16,9 @@ app.use(morgan('dev'));
 
 app.use(authRouter);
 
-const server = module.exports = function() {
-  app.listen(PORT, function() {
-    sequelize.sync({});
-    console.log(`Server up on ${PORT}`);
-  });
-};
-
-server();
+const server = module.exports = app.listen(PORT, function() {
+  if (require.main === module) sequelize.sync({});
+  console.log(`Server up on ${PORT}`);
+});
 
 server.isRunning = false;
