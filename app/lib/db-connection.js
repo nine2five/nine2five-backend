@@ -31,5 +31,5 @@ models.forEach(function(model) {
   e.profile.belongsTo(e.user);
 })(exports);
 
-exports.sequelize = sequelize;
-exports.Sequelize = Sequelize;
+
+module.exports = sequelize;
