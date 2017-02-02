@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const dotenv = require('dotenv');
 dotenv.load({path: `${__dirname}/.testenv`});
 
-const sequelize = require('../build/lib/db-connection').sequelize;
+const sequelize = require('../app/lib/db-connection').sequelize;
 const serverCtrl = require('./lib/server-ctrl');
 const server = require('../server');
 
