@@ -22,13 +22,13 @@ models.forEach(function(model) {
 });
 
 (function(e) {
-  e.Application.belongsTo(e.User);
-  e.Application.belongsTo(e.Offer);
-  e.Application.belongsTo(e.Contact);
-  e.Resume.belongsTo(e.User);
-  e.Application.belongsTo(e.Status);
-  e.Resume.belongsTo(e.Category);
-  e.Profile.belongsTo(e.User);
+  e.application.belongsTo(e.user);
+  e.application.belongsTo(e.offer);
+  e.application.belongsTo(e.contact);
+  e.resume.belongsTo(e.user);
+  e.application.belongsTo(e.status);
+  e.resume.belongsTo(e.category);
+  e.profile.belongsTo(e.user);
 })(exports);
 
 exports.sequelize = sequelize;
