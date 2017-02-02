@@ -4,7 +4,7 @@ const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/nine
 
 const sequelize = new Sequelize(DATABASE_URL);
 
-module.exports = exports = {};
+const db = {};
 
 let models = [
   'application',
@@ -18,18 +18,18 @@ let models = [
 ];
 
 models.forEach(function(model) {
-  exports[model] = sequelize.import(`${__dirname}/../model/${model}`);
+  db[model] = sequelize.import(`${__dirname}/../model/${model}`);
 });
 
-(function(e) {
-  e.application.belongsTo(e.user);
-  e.application.belongsTo(e.offer);
-  e.application.belongsTo(e.contact);
-  e.resume.belongsTo(e.user);
-  e.application.belongsTo(e.status);
-  e.resume.belongsTo(e.category);
-  e.profile.belongsTo(e.user);
-})(exports);
+db.application.belongsTo(db.user);
+db.application.belongsTo(db.offer);
+db.application.belongsTo(db.contact);
+db.resume.belongsTo(db.user);
+db.application.belongsTo(db.status);
+db.resume.belongsTo(db.category);
+db.profile.belongsTo(db.user);
 
 
-module.exports = sequelize;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+module.exports = db;

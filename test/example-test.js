@@ -5,18 +5,15 @@ const expect = require('chai').expect;
 const dotenv = require('dotenv');
 dotenv.load({path: `${__dirname}/.testenv`});
 
-const sequelize = require('../build/lib/db-connection');
+const sequelize = require('../build/lib/db-connection').sequelize;
 const serverCtrl = require('./lib/server-ctrl');
-const createTables = require('../build/lib/db-create-tables');
 const server = require('../server');
 
 describe('Sample test for creating DBs', function() {
 
-  before('create the db', () => {
-    createTables(sequelize);
-  });
+  before('create the db', () => sequelize.sync({}));
 
-  // after('clear tables', () => dbConnection.sequelize.drop());
+  after('clear tables', () => sequelize.drop());
 
   describe('sample test to get travis passing', () => {
     it('should pass', () => {
