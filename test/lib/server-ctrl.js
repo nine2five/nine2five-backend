@@ -3,7 +3,7 @@
 module.exports = exports = {};
 
 exports.serverUp = function(server){
-  return new Promise(function(resolve){
+  return new Promise(resolve => {
     if (!server.isRunning){
       console.log('server running');
       server.listen(process.env.PORT, () => {
@@ -15,7 +15,7 @@ exports.serverUp = function(server){
 };
 
 exports.serverDown = function(server, done){
-  return new Promise(function(resolve, reject){
+  return new Promise((resolve, reject) => {
     if (server.isRunning){
       server.close(err => {
         if (err) return reject(err);
