@@ -4,6 +4,7 @@
   "description": "Resume version management and career success application",
   "main": "index.js",
   "scripts": {
+    "create-database": "node ./test/lib/create-database.js",
     "start": "node server.js",
     "test": "istanbul cover --dir ./coverage _mocha --bail --recursive './test/**/*-test.js' --opts",
     "lint": "./node_modules/eslint/bin/eslint.js .",
@@ -40,6 +41,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
+    "pg": "^6.1.2",
     "sequelize": "^3.29.0",
     "superagent": "^3.3.2"
   }
