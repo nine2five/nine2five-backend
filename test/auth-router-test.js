@@ -11,7 +11,7 @@ const server = require('../server');
 
 const url = `http://localhost:${process.env.PORT}`;
 
-const exampleUser = { email: 'at@hello.com'};
+const exampleUser = { email: 'at@hello.com' };
 
 describe('Testing Auth-Router', function() {
 
@@ -26,7 +26,7 @@ describe('Testing Auth-Router', function() {
 
 
   describe('testing user signup', () => {
-    it('should return be successful', done => {
+    it('should successfully sign up a user', done => {
 
       request.post(`${url}/api/signup`)
       .send(exampleUser)
