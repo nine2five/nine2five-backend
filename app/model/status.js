@@ -1,9 +1,7 @@
-import Sequelize from 'sequelize';
-
-export function Status(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('status', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
   });
-}
+};

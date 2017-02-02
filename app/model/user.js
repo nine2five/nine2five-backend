@@ -1,15 +1,13 @@
-import Sequelize from 'sequelize';
-
-export function User(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     isVerified: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
     },
   });
-}
+};

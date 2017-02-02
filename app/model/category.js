@@ -1,10 +1,8 @@
-import Sequelize from 'sequelize';
-
-export function Category(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('category', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   });
-}
+};

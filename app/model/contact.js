@@ -1,18 +1,16 @@
-import Sequelize from 'sequelize';
-
-export function Contact(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('contact', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     phone: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     title: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
   });
-}
+};

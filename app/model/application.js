@@ -1,66 +1,25 @@
-import Sequelize from 'sequelize';
-import User from './user';
-import Status from './status';
-import Contact from './contact';
-import Offer from './contact';
-
-
-export function Application(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('application', {
-    userId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
-    statusId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: Status,
-        key: 'id',
-        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
-    contactId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: Contact,
-        key: 'id',
-        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
-    offerId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: Offer,
-        key: 'id',
-        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
     company: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     position: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     dateApplied: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
     linkPosting: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     lastCommunication: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
     interviewDate: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
     additionalInfo: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
     },
   });
-}
-
-Application.belongsTo(User);
+};

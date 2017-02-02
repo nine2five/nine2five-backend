@@ -1,18 +1,16 @@
-import Sequelize from 'sequelize';
-
-export function Offer(sequelize){
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('offer', {
     date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
     salary: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
     },
     benefits: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
     },
     accepted: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
     },
   });
-}
+};

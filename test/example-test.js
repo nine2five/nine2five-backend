@@ -1,10 +1,25 @@
 'use strict';
 
-// import { expect } from 'chai'; --- once we have webpack and babel
 const expect = require('chai').expect;
+const dotenv = require('dotenv');
+dotenv.load({path: `${__dirname}/.testenv`});
 
-describe('sample test to get travis passing', function() {
-  it('should pass', () => {
-    expect(true).to.equal(true);
+const sequelize = require('../app/lib/db-connection').sequelize;
+const serverCtrl = require('./lib/server-ctrl');
+const server = require('../server');
+
+describe('Sample test for creating DBs', function() {
+
+  before('create the db', () => sequelize.sync({force: true}));
+  after('clear tables', () => sequelize.drop({cascade: true}));
+
+  describe('sample test to get travis passing', () => {
+    it('should pass', () => {
+      expect(true).to.equal(true);
+    });
+
+    it('should pass', () => {
+      expect(false).to.equal(false);
+    });
   });
 });
