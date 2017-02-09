@@ -10,7 +10,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "babel": "babel -w src/ -d build/",
-    "heroku-postbuild": "babel app/ -d build/"
+    "heroku-postbuild": "babel src/ -d build/"
   },
   "repository": {
     "type": "git",
