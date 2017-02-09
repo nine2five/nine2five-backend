@@ -4,8 +4,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 
-const sequelize = require('./app/lib/db-connection').sequelize;
-const authRouter = require('./app/route/auth-router');
+const sequelize = require('./src/lib/db-connection').sequelize;
+const authRouter = require('./src/route/auth-router');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

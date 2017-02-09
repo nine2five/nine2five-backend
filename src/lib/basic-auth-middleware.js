@@ -1,7 +1,7 @@
 'use strict';
 
 const createError = require('http-errors');
-const debug = require('debug')('nine2five-basic-auth-middleware');
+const debug = require('debug')('nine2five:basic-auth-middleware');
 
 module.exports = (req, res, next) => {
   debug();

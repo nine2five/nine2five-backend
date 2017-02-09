@@ -9,7 +9,7 @@
     "test": "istanbul cover --dir ./coverage _mocha --bail --recursive './test/**/*-test.js' --opts",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "babel": "babel -w app/ -d build/",
+    "babel": "babel -w src/ -d build/",
     "heroku-postbuild": "babel app/ -d build/"
   },
   "repository": {
