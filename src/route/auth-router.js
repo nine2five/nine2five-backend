@@ -9,7 +9,7 @@ const User = require('../lib/db-connection').user;
 
 const authRouter = module.exports = Router();
 
-authRouter.post('/api/signup', jsonParser, function(req, res, next){
+authRouter.post('/api/signup', jsonParser, function(req, res, next) {
   User.create({
     email : req.body.email,
     password: req.body.password,
