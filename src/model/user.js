@@ -23,15 +23,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       unique: true,
     },
-    generatePasswordHash: function(password) {
-      return new Promise((resolve, reject) => {
-        bcrypt.hash(password, 10, (err, hash) => {
-          if (err) reject(createError(400, 'Invalid user information'));
-          resolve(hash);
-        });
-      });
-    },
   },{
+    setterMethods: {
+      generatePasswordHash: function(password) {
+        return new Promise((resolve, reject) => {
+          bcrypt.hash(password, 10, (err, hash) => {
+            if (err) reject(createError(400, 'Invalid user information'));
+            resolve(hash);
+          });
+        });
+      },
+    },
     instanceMethods: {
       comparePasswordHash: function(password) {
         return new Promise((resolve, reject) => {
