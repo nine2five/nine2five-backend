@@ -9,5 +9,9 @@ module.exports = function(sequelize, DataTypes) {
     isVerified: {
       type: DataTypes.BOOLEAN,
     },
+    findHash: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
   });
 };
