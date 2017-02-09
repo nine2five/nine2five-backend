@@ -24,7 +24,6 @@ describe('Testing Auth-Router', function() {
     .then(() => sequelize.drop({cascade: true}));
   });
 
-
   describe('testing user signup', () => {
     it('should successfully sign up a user', done => {
 
