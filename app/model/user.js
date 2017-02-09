@@ -1,7 +1,9 @@
-import bcrypt from 'bcrypt';
-import crypto from 'crypto';
-import jwt from 'jsonwebtoken';
-import createError from 'http-errors';
+'use strict';
+
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const createError = require('http-errors');
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
@@ -21,17 +23,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       unique: true,
     },
-  },{
-    getterMethods: {
-      generatePasswordHash: function(password) {
-        return new Promise((resolve, reject) => {
-          bcrypt.hash(password, 10, (err, hash) => {
-            if (err) reject(createError(400, 'Invalid user information'));
-            this.password = hash;
-            resolve(hash);
-          });
+    generatePasswordHash: function(password) {
+      return new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, (err, hash) => {
+          if (err) reject(createError(400, 'Invalid user information'));
+          resolve(hash);
         });
-      },
+      });
+    },
+  },{
+    instanceMethods: {
       comparePasswordHash: function(password) {
         return new Promise((resolve, reject) => {
           bcrypt.compare(password, this.password, (err, valid) => {
