@@ -12,6 +12,7 @@ const authRouter = module.exports = Router();
 authRouter.post('/api/signup', jsonParser, function(req, res, next) {
   User.create({
     email : req.body.email,
+    password: req.body.password,
   })
   .then(() => {
     res.send('Success');

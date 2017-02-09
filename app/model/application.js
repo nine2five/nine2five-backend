@@ -2,9 +2,11 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('application', {
     company: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     position: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     dateApplied: {
       type: DataTypes.DATE,
