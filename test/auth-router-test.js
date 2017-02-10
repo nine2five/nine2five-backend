@@ -8,6 +8,7 @@ dotenv.load({path: `${__dirname}/.testenv`});
 const sequelize = require('../src/lib/db-connection').sequelize;
 const serverCtrl = require('./lib/server-ctrl');
 const server = require('../server');
+const mockUser = require('./lib/mock-user');
 
 const url = `http://localhost:${process.env.PORT}`;
 
@@ -39,17 +40,18 @@ describe('Testing Auth-Router', function() {
     });
   });
 
-  describe('testing user login', () => {
+  describe('testing user login', function() {
 
-    before('create a user', () => {
-      
-    })
+    before('create a user', done =>
+      mockUser.call(this, done));
 
 
     it('should successfully log in a user', done => {
 
+      console.log(this.tempEmail);
+
       request.get(`${url}/api/login`)
-      .auth(this.tempUser.email, this.tempUser.password)
+      .auth(this.tempEmail, this.tempPassword)
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(200);

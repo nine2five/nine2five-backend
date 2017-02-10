@@ -37,7 +37,10 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
 authRouter.get('/api/login', basicAuth, function(req, res, next){
   debug('/api/login route');
 
-  req.user.generateToken()
+  User.findOne({ where: {email: req.auth.email} })
+  .then( user => user.comparePasswordHash(req.auth.password))
+  .catch(err => createError(401, err.message))
+  .then( user => user.generateToken())
   .then(token => res.send(token))
   .catch(next);
 });

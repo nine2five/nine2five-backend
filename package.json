@@ -24,6 +24,7 @@
     "coveralls": "^2.11.15",
     "eslint": "^3.13.1",
     "istanbul": "^0.4.5",
+    "lorem-ipsum": "^1.0.3",
     "mocha": "^3.2.0"
   },
   "dependencies": {
@@ -38,7 +39,6 @@
     "body-parser": "^1.16.0",
     "cors": "^2.8.1",
     "crypto": "0.0.3",
-    "debug": "^2.6.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "http-errors": "^1.5.1",
