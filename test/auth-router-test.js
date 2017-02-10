@@ -33,7 +33,7 @@ describe('Testing Auth-Router', function() {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(200);
-        expect(res.text).to.equal('Success');
+        expect(res.text.length).to.not.equal(0);
         done();
       });
     });
