@@ -36,4 +36,8 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
 
 authRouter.get('/api/login', basicAuth, function(req, res, next){
   debug('/api/login route');
+
+  req.user.generateToken()
+  .then(token => res.send(token))
+  .catch(next);
 });

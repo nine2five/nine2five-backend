@@ -38,4 +38,24 @@ describe('Testing Auth-Router', function() {
       });
     });
   });
+
+  describe('testing user login', () => {
+
+    before('create a user', () => {
+      
+    })
+
+
+    it('should successfully log in a user', done => {
+
+      request.get(`${url}/api/login`)
+      .auth(this.tempUser.email, this.tempUser.password)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.status).to.equal(200);
+        expect(res.text.length).to.not.equal(0);
+        done();
+      });
+    });
+  });
 });
