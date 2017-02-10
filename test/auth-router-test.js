@@ -11,7 +11,7 @@ const server = require('../server');
 
 const url = `http://localhost:${process.env.PORT}`;
 
-const exampleUser = { email: 'at@hello.com', password: '1234' };
+const exampleUser = { email: 'at@hello.com', password: '12345678' };
 
 describe('Testing Auth-Router', function() {
 

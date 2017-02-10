@@ -12,5 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  });
+  },
+    {
+      getterMethods: {
+        fullName : function() { return this.firstName + this.lastName;},
+      },
+    });
 };
