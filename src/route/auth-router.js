@@ -29,22 +29,11 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
       password: hash,
     });
   })
-  .then(user => {
-    console.log(user, 'user');
-    return user.generateToken();
-  })
+  .then(user => user.generateToken())
   .then(token => res.send(token))
   .catch(next);
 });
 
-authRouter.get('/api/login', bearerAuth, function(req, res, next){
+authRouter.get('/api/login', basicAuth, function(req, res, next){
   debug('/api/login route');
-  User.create({
-    email : req.body.email,
-    password: req.body.password,
-  })
-  .then(() => {
-    res.send('Success');
-  })
-  .catch(next);
 });
