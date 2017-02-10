@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
     },
   },{
-    setterMethods: {
+    classMethods: {
       generatePasswordHash: function(password) {
         return new Promise((resolve, reject) => {
           bcrypt.hash(password, 10, (err, hash) => {
@@ -47,8 +47,8 @@ module.exports = function(sequelize, DataTypes) {
       generateToken: function() {
         return new Promise((resolve, reject) => {
           this.generateFindHash()
-           .then(findHash => resolve(jwt.sign({token: findHash}, process.env.APP_SECRET)))
-           .catch(err => reject(err));
+          .then(findHash => resolve(jwt.sign({token: findHash}, process.env.APP_SECRET)))
+          .catch(err => reject(err));
         });
       },
       generateFindHash: function() {

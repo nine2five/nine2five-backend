@@ -4,7 +4,7 @@ const debug = require('debug')('nine2five:bearer-auth-middleware');
 const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 
-const User = require('./model/user');
+const User = require('../model/user');
 
 module.exports = (req, res, next) => {
   debug();
