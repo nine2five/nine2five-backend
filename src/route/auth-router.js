@@ -17,6 +17,8 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
   let password = req.body.password;
   delete req.body.password;
 
+  if (!req.body.email)
+    return next(createError(400, 'Email required'));
   if (!password)
     return next(createError(400, 'Password required'));
   if (password.length < 8)
@@ -36,4 +38,14 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
 
 authRouter.get('/api/login', basicAuth, function(req, res, next){
   debug('/api/login route');
+
+  User.findOne({ where: {email: req.auth.email} })
+  .then( user => {
+    if (!user) return next(createError(401, 'User not found'));
+    return user.comparePasswordHash(req.auth.password);
+  })
+  .catch(err => next(createError(401, err.message)))
+  .then( user => user.generateToken())
+  .then(token => res.send(token))
+  .catch(next);
 });
