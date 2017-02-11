@@ -17,6 +17,8 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
   let password = req.body.password;
   delete req.body.password;
 
+  if (!req.body.email)
+    return next(createError(400, 'Email required'));
   if (!password)
     return next(createError(400, 'Password required'));
   if (password.length < 8)

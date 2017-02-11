@@ -10,7 +10,8 @@
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "babel": "babel -w src/ -d build/",
-    "heroku-postbuild": "babel src/ -d build/"
+    "heroku-postbuild": "babel src/ -d build/",
+    "test-debug": "DEBUG='nine2five*' istanbul cover --dir ./coverage _mocha --bail --recursive './test/**/*-test.js' --opts"
   },
   "repository": "git+https://github.com/nine2five/nine2five",
   "author": "broxsonl@gmail.com, stefuhnee@gmail.com, maxfred0025@gmail.com, Raziyeh.bazargan@gmail.com",
