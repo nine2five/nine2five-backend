@@ -40,8 +40,11 @@ authRouter.get('/api/login', basicAuth, function(req, res, next){
   debug('/api/login route');
 
   User.findOne({ where: {email: req.auth.email} })
-  .then( user => user.comparePasswordHash(req.auth.password))
-  .catch(err => createError(401, err.message))
+  .then( user => {
+    if (!user) return next(createError(401, 'User not found'));
+    return user.comparePasswordHash(req.auth.password);
+  })
+  .catch(err => next(createError(401, err.message)))
   .then( user => user.generateToken())
   .then(token => res.send(token))
   .catch(next);

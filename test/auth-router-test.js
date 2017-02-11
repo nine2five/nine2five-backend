@@ -97,16 +97,44 @@ describe('Testing Auth-Router', function() {
 
   describe('testing user login', function() {
 
-    before('create a user', done => mockUser.call(this, done));
+    describe('with valid auth', function() {
+      before('create a user', done => mockUser.call(this, done));
 
-    it('should successfully log in a user', done => {
-      request.get(`${url}/api/login`)
-      .auth(this.tempEmail, this.tempPassword)
-      .end((err, res) => {
-        if (err) return done(err);
-        expect(res.status).to.equal(200);
-        expect(res.text.length).to.not.equal(0);
-        done();
+      it('should successfully log in a user and return a token', done => {
+        request.get(`${url}/api/login`)
+        .auth(this.tempEmail, this.tempPassword)
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(200);
+          expect(res.text.length).to.not.equal(0);
+          done();
+        });
+      });
+    });
+
+    describe('with bad email', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .auth('bad@bad.com', this.tempPassword)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with bad password', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .auth(this.tempEmail, 'badpassword')
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
       });
     });
   });
