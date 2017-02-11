@@ -10,15 +10,13 @@ module.exports = (err, req, res, next) => {
 
   if (err.status){
     res.status(err.status).send(err.name);
-    next();
-    return;
+    return next();
   }
 
-  if (err.name === 'ValidationError'){
-    err = createError(400, err.message);
+  if (err.name == 'SequelizeUniqueConstraintError'){
+    err = createError(409, err.message);
     res.status(err.status).send(err.name);
-    next();
-    return;
+    return next();
   }
 
   err = createError(500, err.message);
