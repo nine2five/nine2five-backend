@@ -112,6 +112,45 @@ describe('Testing Auth-Router', function() {
       });
     });
 
+    describe('with no auth header', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with empty auth header', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .auth('')
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with no email', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .auth('', this.tempPassword)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+
     describe('with bad email', function() {
       before('create a user', done => mockUser.call(this, done));
 
@@ -124,6 +163,20 @@ describe('Testing Auth-Router', function() {
         });
       });
     });
+
+    describe('with no password', function() {
+      before('create a user', done => mockUser.call(this, done));
+
+      it('should respond with 401', done => {
+        request.get(`${url}/api/login`)
+        .auth('bad@bad.com', '')
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
 
     describe('with bad password', function() {
       before('create a user', done => mockUser.call(this, done));
